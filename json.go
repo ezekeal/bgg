@@ -6,21 +6,19 @@ import (
 )
 
 type Game struct {
-	Name               string
-	Published          int
-	Thumbnail          string
-	Image              string
-	MinPlayers         int
-	MaxPlayers         int
-	PlayingTime        int
-	MinPlaytime        int
-	MaxPlaytime        int
-	MinAge             int
-	Description        string
-	Categories         []string
-	Mechanics          []string
-	SuggestedPlayers   int
-	SuggestedPlayerAge int
+	Name        string
+	Published   int
+	Thumbnail   string
+	Image       string
+	MinPlayers  int
+	MaxPlayers  int
+	PlayingTime int
+	MinPlaytime int
+	MaxPlaytime int
+	MinAge      int
+	Description string
+	Categories  []string
+	Mechanics   []string
 }
 
 func toJSON(query Query) []Game {
