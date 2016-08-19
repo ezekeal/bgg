@@ -23,6 +23,11 @@ type Link struct {
 	Value string `xml:"value,attr"`
 }
 
+type Rank struct {
+	Name  string `xml:"name,attr"`
+	Value string `xml:"value,attr"`
+}
+
 type Item struct {
 	Names       []Value `xml:"name"`
 	Published   Value   `xml:"yearpublished"`
@@ -36,6 +41,8 @@ type Item struct {
 	MinAge      Value   `xml:"minage"`
 	Description string  `xml:"description"`
 	Links       []Link  `xml:"link"`
+	Rating      Value   `xml:"statistics>ratings>average"`
+	Ranks       []Rank  `xml:"statistics>ratings>ranks>rank"`
 }
 
 type Query struct {

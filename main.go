@@ -31,7 +31,7 @@ func main() {
 	}
 
 	baseURL := "http://www.boardgamegeek.com/xmlapi2/thing?id="
-	url := baseURL + strings.Join(gameIds, ",")
+	url := baseURL + strings.Join(gameIds, ",") + "&stats=1"
 
 	response, err := http.Get(url)
 	handleError(err, "get data")

@@ -19,6 +19,8 @@ type Game struct {
 	Description string
 	Categories  []string
 	Mechanics   []string
+	Rank        int
+	Rating      float64
 }
 
 func toJSON(query Query) []Game {
@@ -40,6 +42,8 @@ func toJSON(query Query) []Game {
 		game.Description = html.UnescapeString(item.Description)
 		game.Categories = getLink(item, "boardgamecategory")
 		game.Mechanics = getLink(item, "boardgamemechanic")
+		game.Rank = toInt(getPrimaryRank(item))
+		game.Rating = toFloat(item.Rating.Value)
 
 		gameList = append(gameList, game)
 	}
@@ -56,8 +60,23 @@ func getPrimaryName(item Item) string {
 	return ""
 }
 
+func getPrimaryRank(item Item) string {
+	for _, entry := range item.Ranks[:] {
+		if entry.Name == "boardgame" {
+			return entry.Value
+		}
+	}
+	return ""
+}
+
 func toInt(str string) int {
 	num, err := strconv.Atoi(str)
+	handleError(err, "convert string")
+	return num
+}
+
+func toFloat(str string) float64 {
+	num, err := strconv.ParseFloat(str, 64)
 	handleError(err, "convert string")
 	return num
 }
